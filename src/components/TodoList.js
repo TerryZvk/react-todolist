@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input, Button, List } from 'antd';
 import store from '../store';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from '../store/actionCreaters';
+import axios from 'axios';
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, initListAction } from '../store/actionCreaters';
 
 export default class TodoList extends React.Component {
   constructor(props){
@@ -24,13 +25,24 @@ export default class TodoList extends React.Component {
   }
 
   handleButtonClick(){
+    if(this.state.inputValue === ''){return false;}
     const action = getAddItemAction();
     store.dispatch(action);
   }
 
-  handleItemClick(index){
+  handleItemDelete(index){
     const action = getDeleteItemAction(index)
     store.dispatch(action);
+  }
+
+  componentDidMount(){
+    axios.get('./api/list.json').then((res) => {
+      const data = res.data;
+      const action = initListAction(data);
+      store.dispatch(action);
+    }).catch(() => {
+      alert('err')
+    })
   }
 
   render(){
@@ -48,7 +60,7 @@ export default class TodoList extends React.Component {
           bordered
           dataSource={this.state.list}
           renderItem={(item, index) => (
-            <List.Item onClick={this.handleItemClick.bind(this,index)}>{item}</List.Item>
+            <List.Item onClick={this.handleItemDelete.bind(this,index)}>{item}</List.Item>
           )}
           style={{width:'400px',marginTop:'20px'}}
         />
