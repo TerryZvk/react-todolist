@@ -1,8 +1,7 @@
 import React from 'react';
 import { Input, Button, List } from 'antd';
 import store from '../store';
-import axios from 'axios';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, initListAction } from '../store/actionCreaters';
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList } from '../store/actionCreaters';
 
 export default class TodoList extends React.Component {
   constructor(props){
@@ -36,13 +35,8 @@ export default class TodoList extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('./api/list.json').then((res) => {
-      const data = res.data;
-      const action = initListAction(data);
-      store.dispatch(action);
-    }).catch(() => {
-      alert('err')
-    })
+    const action = getTodoList();
+    store.dispatch(action);
   }
 
   render(){
