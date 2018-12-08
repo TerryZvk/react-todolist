@@ -1,60 +1,24 @@
 import React from 'react';
 import { Input, Button, List } from 'antd';
-import store from '../store';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction, getTodoList } from '../store/actionCreaters';
 
 export default class TodoList extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = store.getState();
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleStoreChange = this.handleStoreChange.bind(this);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
-    store.subscribe(this.handleStoreChange);
-  }
-
-  handleInputChange(e){
-    const action = getInputChangeAction(e.target.value);
-    store.dispatch(action);
-  }
-
-  handleStoreChange(){
-    this.setState(store.getState())
-  }
-
-  handleButtonClick(){
-    if(this.state.inputValue === ''){return false;}
-    const action = getAddItemAction();
-    store.dispatch(action);
-  }
-
-  handleItemDelete(index){
-    const action = getDeleteItemAction(index)
-    store.dispatch(action);
-  }
-
-  componentDidMount(){
-    const action = getTodoList();
-    store.dispatch(action);
-  }
 
   render(){
     return(
       <div style={{marginLeft:'20px'}}>
         <h1>TodoList</h1>
         <Input 
-          value={this.state.inputValue} 
+          value={this.props.inputValue} 
           placeholder='input info' 
           style={{width:'300px', marginRight:'34px'}}
-          onChange={this.handleInputChange}
+          onChange={this.props.handleInputChange}
         />
-        <Button type='primary' onClick={this.handleButtonClick}>提交</Button>
+        <Button type='primary' onClick={this.props.handleButtonClick}>提交</Button>
         <List
           bordered
-          dataSource={this.state.list}
+          dataSource={this.props.list}
           renderItem={(item, index) => (
-            <List.Item onClick={this.handleItemDelete.bind(this,index)}>{item}</List.Item>
+            <List.Item onClick={this.props.handleItemDelete}>{item}</List.Item>
           )}
           style={{width:'400px',marginTop:'20px'}}
         />
@@ -63,3 +27,4 @@ export default class TodoList extends React.Component {
     )
   }
 }
+
