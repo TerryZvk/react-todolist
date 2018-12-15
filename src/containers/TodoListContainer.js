@@ -1,11 +1,11 @@
 import TodoList from '../components/TodoList';
 import { connect } from 'react-redux';
-import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from '../actions';
+import { getInputChangeAction, getAddItemAction, getDeleteItemAction } from '../components/TodoList/store/actionCreators';
 
 const mapStateToProps = (state) => {
   return {
-    inputValue: state.inputValue,
-    list: state.list
+    inputValue: state.getIn(['todolist', 'inputValue']),
+    list: state.getIn(['todolist', 'list'])
   }
 }
 

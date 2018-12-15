@@ -1,7 +1,8 @@
 import React from 'react';
 import TodoListContainer from './TodoListContainer';
+import ShoppingCartContainer from './ShoppingCartContainer';
 import { Menu } from 'antd';
-import AppleCart from '../components/AppleCart';
+
 import { Route, Link } from "react-router-dom";
 
 export default class App extends React.Component {
@@ -13,12 +14,12 @@ export default class App extends React.Component {
             <Link to="/">Todolist</Link>
           </Menu.Item>
           <Menu.Item>
-            <Link to="/applecart">applecart</Link>
+            <Link to="/shopping-cart">shopping-cart</Link>
           </Menu.Item>
         </Menu>
 
         <Route exact path="/" component={TodoListContainer} />
-        <Route path="/applecart" component={AppleCart} />
+        <Route exact path="/shopping-cart" component={ShoppingCartContainer} />
       </div>  
     )
   }

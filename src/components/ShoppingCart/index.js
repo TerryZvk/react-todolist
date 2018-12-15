@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class AppleCart extends Component {
+class ShoppingCart extends Component {
   render() {
     return (
       <div>
-        <h1>Hello World!</h1>
+        ShoppingCart
       </div>
     );
   }
 }
 
-export default AppleCart;
+export default ShoppingCart;
