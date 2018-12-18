@@ -6,12 +6,11 @@ const defaultState = fromJS({
   list: []
 });
 
-export const TodoListReducer = (state = defaultState, action) => {
+export default (state = defaultState, action) => {
   switch(action.type){
     case CHANGE_INPUT_VALUE:
       return state.set('inputValue', action.value);
     case ADD_TODO_ITEM:
-      console.log(state.get('list'));
       return state.merge({
         'list': state.get('list').push(state.get('inputValue')),
         'inputValue': ""

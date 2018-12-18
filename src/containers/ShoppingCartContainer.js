@@ -1,6 +1,14 @@
-import ShoppingCart from '../components/ShoppingCart';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import ProductsListContainer from './ProductsListContainer';
 
+class ShoppingCartContainer extends Component {
+  render() {
+    return (
+      <div>
+        <ProductsListContainer />
+      </div>
+    );
+  }
+}
 
-export default connect(null, null)(ShoppingCart);
-
+export default ShoppingCartContainer;
