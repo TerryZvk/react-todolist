@@ -1,5 +1,6 @@
 import productsReducer from './productsReducer';
+import cartReducer from './cartReducer';
 import * as constants from './constants';
 import * as actions from './actionCreators';
 
-export { productsReducer, constants, actions }
+export { productsReducer, cartReducer, constants, actions }

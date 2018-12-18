@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 
-const Cart = ({products, total, onCheckoutClicked}) => {
-  const hasProducts = products.length > 0;
+const Cart = ({cart, total, onCheckoutClicked}) => {
+  const hasProducts = cart.size > 0;
   const nodes = hasProducts ? (
-    products.map( product => 
+    cart.map( product => 
       <Product
-        title={product.title}
-        price={product.price}
-        num={product.quantity}
-        key={product.id}
+        title={product.get('title')}
+        price={product.get('price')}
+        num={product.get('quantity')}
+        key={product.get('id')}
       />
     )
   ) : (
@@ -19,7 +19,7 @@ const Cart = ({products, total, onCheckoutClicked}) => {
 
   return (
     <div>
-      <h3> Your Cart</h3>
+      <h2> Your Cart</h2>
       <div>{nodes}</div>
       <p>Total: &#36;{total}</p>
       <button
@@ -33,7 +33,7 @@ const Cart = ({products, total, onCheckoutClicked}) => {
 
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.string,
+  total: PropTypes.number,
   onCheckoutClicked: PropTypes.func
 }
 
