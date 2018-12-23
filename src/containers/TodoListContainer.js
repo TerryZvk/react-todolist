@@ -19,9 +19,9 @@ const mapDispatchToProps = (dispatch) => {
       const action = getAddItemAction();
       dispatch(action);
     },
-    handleItemDelete: (e) => {
-      const value = e.target.innerText;
-      const action = getDeleteItemAction(value)
+    handleItemDelete: (index) => {
+      
+      const action = getDeleteItemAction(index)
       dispatch(action);
     }
   }

@@ -20,7 +20,7 @@ class CartContainer extends Component {
 const totalPrice = (cart) => {
   let productsPrice = 0;
   cart.forEach(element => {
-    productsPrice = productsPrice + element.get('quantity') * element.get('price')
+    productsPrice += element.get('quantity') * element.get('price')
   });
   return productsPrice
 }

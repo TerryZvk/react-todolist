@@ -10,7 +10,7 @@ export const getAddItemAction = () => ({
   type: ADD_TODO_ITEM
 });
 
-export const getDeleteItemAction = (value) => ({
+export const getDeleteItemAction = (index) => ({
   type: DELETE_TODO_ITEM,
-  value: fromJS(value)
+  index: fromJS(index)
 })
