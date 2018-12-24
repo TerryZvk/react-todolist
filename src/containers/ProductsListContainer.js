@@ -7,7 +7,7 @@ class ProductsListContainer extends Component {
   render() {
     const { products, addToCart} = this.props;
     return (
-      <div>
+      <div style={{width:'400px'}}>
         <h2>Products List:</h2>
         {
           products.map( product =>

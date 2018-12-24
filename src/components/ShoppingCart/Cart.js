@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Product from './Product';
+import CartProduct from './CartProduct';
 
 const Cart = ({cart, total, onCheckoutClicked}) => {
-  const hasProducts = cart.size > 0;
+  const hasProducts = cart.some(item => parseInt(item.get('quantity')) > 0);
   const nodes = hasProducts ? (
     cart.map( product => 
-      <Product
+      <CartProduct
         title={product.get('title')}
         price={product.get('price')}
         num={product.get('quantity')}
@@ -22,19 +22,13 @@ const Cart = ({cart, total, onCheckoutClicked}) => {
       <h2> Your Cart</h2>
       <div>{nodes}</div>
       <p>Total: &#36;{total}</p>
-      <button
-        onClick={onCheckoutClicked}
-        disabled={hasProducts ? '' : 'disabled'}>
-        checkout
-      </button>
     </div>
   )
 }
 
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.number,
-  onCheckoutClicked: PropTypes.func
+  total: PropTypes.number
 }
 
 export default Cart
