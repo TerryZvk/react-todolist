@@ -1,0 +1,1 @@
+export const CLICK_CHECKOUT_BOX = 'CLICK_CHECKOUT_BOX';
